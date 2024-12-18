@@ -1,0 +1,380 @@
+[
+  {
+    "id": 1,
+    "name": "Acadia National Park",
+    "state": "Maine",
+    "yearEstablished": 1919
+  },
+  {
+    "id": 2,
+    "name": "American Samoa National Park",
+    "state": "American Samoa",
+    "yearEstablished": 1988
+  },
+  {
+    "id": 3,
+    "name": "Arches National Park",
+    "state": "Utah",
+    "yearEstablished": 1971
+  },
+  {
+    "id": 4,
+    "name": "Badlands National Park",
+    "state": "South Dakota",
+    "yearEstablished": 1978
+  },
+  {
+    "id": 5,
+    "name": "Big Bend National Park",
+    "state": "Texas",
+    "yearEstablished": 1944
+  },
+  {
+    "id": 6,
+    "name": "Biscayne National Park",
+    "state": "Florida",
+    "yearEstablished": 1980
+  },
+  {
+    "id": 7,
+    "name": "Black Canyon of the Gunnison National Park",
+    "state": "Colorado",
+    "yearEstablished": 1999
+  },
+  {
+    "id": 8,
+    "name": "Bryce Canyon National Park",
+    "state": "Utah",
+    "yearEstablished": 1928
+  },
+  {
+    "id": 9,
+    "name": "Canyonlands National Park",
+    "state": "Utah",
+    "yearEstablished": 1964
+  },
+  {
+    "id": 10,
+    "name": "Capitol Reef National Park",
+    "state": "Utah",
+    "yearEstablished": 1971
+  },
+  {
+    "id": 11,
+    "name": "Carlsbad Caverns National Park",
+    "state": "New Mexico",
+    "yearEstablished": 1930
+  },
+  {
+    "id": 12,
+    "name": "Channel Islands National Park",
+    "state": "California",
+    "yearEstablished": 1980
+  },
+  {
+    "id": 13,
+    "name": "Congaree National Park",
+    "state": "South Carolina",
+    "yearEstablished": 2003
+  },
+  {
+    "id": 14,
+    "name": "Crater Lake National Park",
+    "state": "Oregon",
+    "yearEstablished": 1902
+  },
+  {
+    "id": 15,
+    "name": "Cuyahoga Valley National Park",
+    "state": "Ohio",
+    "yearEstablished": 2000
+  },
+  {
+    "id": 16,
+    "name": "Death Valley National Park",
+    "state": "California, Nevada",
+    "yearEstablished": 1994
+  },
+  {
+    "id": 17,
+    "name": "Denali National Park & Preserve",
+    "state": "Alaska",
+    "yearEstablished": 1917
+  },
+  {
+    "id": 18,
+    "name": "Dry Tortugas National Park",
+    "state": "Florida",
+    "yearEstablished": 1992
+  },
+  {
+    "id": 19,
+    "name": "Everglades National Park",
+    "state": "Florida",
+    "yearEstablished": 1947
+  },
+  {
+    "id": 20,
+    "name": "Gates of the Arctic National Park & Preserve",
+    "state": "Alaska",
+    "yearEstablished": 1980
+  },
+  {
+    "id": 21,
+    "name": "Gateway Arch National Park",
+    "state": "Missouri",
+    "yearEstablished": 2018
+  },
+  {
+    "id": 22,
+    "name": "Glacier Bay National Park & Preserve",
+    "state": "Alaska",
+    "yearEstablished": 1980
+  },
+  {
+    "id": 23,
+    "name": "Glacier National Park",
+    "state": "Montana",
+    "yearEstablished": 1910
+  },
+  {
+    "id": 24,
+    "name": "Grand Canyon National Park",
+    "state": "Arizona",
+    "yearEstablished": 1919
+  },
+  {
+    "id": 25,
+    "name": "Grand Teton National Park",
+    "state": "Wyoming",
+    "yearEstablished": 1929
+  },
+  {
+    "id": 26,
+    "name": "Great Basin National Park",
+    "state": "Nevada",
+    "yearEstablished": 1986
+  },
+  {
+    "id": 27,
+    "name": "Great Sand Dunes National Park & Preserve",
+    "state": "Colorado",
+    "yearEstablished": 2004
+  },
+  {
+    "id": 28,
+    "name": "Great Smoky Mountains National Park",
+    "state": "Tennessee, North Carolina",
+    "yearEstablished": 1934
+  },
+  {
+    "id": 29,
+    "name": "Guadalupe Mountains National Park",
+    "state": "Texas",
+    "yearEstablished": 1972
+  },
+  {
+    "id": 30,
+    "name": "Haleakal? National Park",
+    "state": "Hawaii",
+    "yearEstablished": 1961
+  },
+  {
+    "id": 31,
+    "name": "Hawai?i Volcanoes National Park",
+    "state": "Hawaii",
+    "yearEstablished": 1916
+  },
+  {
+    "id": 32,
+    "name": "Hot Springs National Park",
+    "state": "Arkansas",
+    "yearEstablished": 1921
+  },
+  {
+    "id": 33,
+    "name": "Indiana Dunes National Park",
+    "state": "Indiana",
+    "yearEstablished": 2019
+  },
+  {
+    "id": 34,
+    "name": "Isle Royale National Park",
+    "state": "Michigan",
+    "yearEstablished": 1940
+  },
+  {
+    "id": 35,
+    "name": "Joshua Tree National Park",
+    "state": "California",
+    "yearEstablished": 1994
+  },
+  {
+    "id": 36,
+    "name": "Katmai National Park & Preserve",
+    "state": "Alaska",
+    "yearEstablished": 1980
+  },
+  {
+    "id": 37,
+    "name": "Kenai Fjords National Park",
+    "state": "Alaska",
+    "yearEstablished": 1980
+  },
+  {
+    "id": 38,
+    "name": "Kings Canyon National Park",
+    "state": "California",
+    "yearEstablished": 1940
+  },
+  {
+    "id": 39,
+    "name": "Kobuk Valley National Park",
+    "state": "Alaska",
+    "yearEstablished": 1980
+  },
+  {
+    "id": 40,
+    "name": "Lake Clark National Park & Preserve",
+    "state": "Alaska",
+    "yearEstablished": 1980
+  },
+  {
+    "id": 41,
+    "name": "Lassen Volcanic National Park",
+    "state": "California",
+    "yearEstablished": 1916
+  },
+  {
+    "id": 42,
+    "name": "Mammoth Cave National Park",
+    "state": "Kentucky",
+    "yearEstablished": 1941
+  },
+  {
+    "id": 43,
+    "name": "Mesa Verde National Park",
+    "state": "Colorado",
+    "yearEstablished": 1906
+  },
+  {
+    "id": 44,
+    "name": "Mount Rainier National Park",
+    "state": "Washington",
+    "yearEstablished": 1899
+  },
+  {
+    "id": 45,
+    "name": "New River Gorge National Park & Preserve",
+    "state": "West Virginia",
+    "yearEstablished": 2020
+  },
+  {
+    "id": 46,
+    "name": "North Cascades National Park",
+    "state": "Washington",
+    "yearEstablished": 1968
+  },
+  {
+    "id": 47,
+    "name": "Olympic National Park",
+    "state": "Washington",
+    "yearEstablished": 1938
+  },
+  {
+    "id": 48,
+    "name": "Petrified Forest National Park",
+    "state": "Arizona",
+    "yearEstablished": 1962
+  },
+  {
+    "id": 49,
+    "name": "Pinnacles National Park",
+    "state": "California",
+    "yearEstablished": 2013
+  },
+  {
+    "id": 50,
+    "name": "Redwood National Park",
+    "state": "California",
+    "yearEstablished": 1968
+  },
+  {
+    "id": 51,
+    "name": "Rocky Mountain National Park",
+    "state": "Colorado",
+    "yearEstablished": 1915
+  },
+  {
+    "id": 52,
+    "name": "Saguaro National Park",
+    "state": "Arizona",
+    "yearEstablished": 1994
+  },
+  {
+    "id": 53,
+    "name": "Sequoia National Park",
+    "state": "California",
+    "yearEstablished": 1890
+  },
+  {
+    "id": 54,
+    "name": "Shenandoah National Park",
+    "state": "Virginia",
+    "yearEstablished": 1935
+  },
+  {
+    "id": 55,
+    "name": "Theodore Roosevelt National Park",
+    "state": "North Dakota",
+    "yearEstablished": 1978
+  },
+  {
+    "id": 56,
+    "name": "Virgin Islands National Park",
+    "state": "U.S. Virgin Islands",
+    "yearEstablished": 1956
+  },
+  {
+    "id": 57,
+    "name": "Voyageurs National Park",
+    "state": "Minnesota",
+    "yearEstablished": 1975
+  },
+  {
+    "id": 58,
+    "name": "White Sands National Park",
+    "state": "New Mexico",
+    "yearEstablished": 2019
+  },
+  {
+    "id": 59,
+    "name": "Wind Cave National Park",
+    "state": "South Dakota",
+    "yearEstablished": 1903
+  },
+  {
+    "id": 60,
+    "name": "Wrangell�St. Elias National Park & Preserve",
+    "state": "Alaska",
+    "yearEstablished": 1980
+  },
+  {
+    "id": 61,
+    "name": "Yellowstone National Park",
+    "state": "Wyoming, Montana, Idaho",
+    "yearEstablished": 1872
+  },
+  {
+    "id": 62,
+    "name": "Yosemite National Park",
+    "state": "California",
+    "yearEstablished": 1890
+  },
+  {
+    "id": 63,
+    "name": "Zion National Park",
+    "state": "Utah",
+    "yearEstablished": 1919
+  }
+]
