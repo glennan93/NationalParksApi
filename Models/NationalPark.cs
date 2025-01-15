@@ -11,5 +11,8 @@
         public string Name { get; set; } = string.Empty;
         public string State { get; set; } = string.Empty;
         public int YearEstablished { get; set; }
+
+        public string Latitude {  get; set; }
+        public string Longitude { get; set; }
     }
 }

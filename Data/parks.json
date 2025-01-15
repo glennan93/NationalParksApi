@@ -3,378 +3,504 @@
     "id": 1,
     "name": "Acadia National Park",
     "state": "Maine",
-    "yearEstablished": 1919
+    "yearEstablished": 1919,
+    "latitude": "44.409286",
+    "longitude": "-68.247501"
   },
   {
     "id": 2,
     "name": "American Samoa National Park",
     "state": "American Samoa",
-    "yearEstablished": 1988
+    "yearEstablished": 1988,
+    "latitude": "-14.22865935",
+    "longitude": "-169.8503777"
   },
   {
     "id": 3,
     "name": "Arches National Park",
     "state": "Utah",
-    "yearEstablished": 1971
+    "yearEstablished": 1971,
+    "latitude": "38.72261844",
+    "longitude": "-109.5863666"
   },
   {
     "id": 4,
     "name": "Badlands National Park",
     "state": "South Dakota",
-    "yearEstablished": 1978
+    "yearEstablished": 1978,
+    "latitude": "43.68584846",
+    "longitude": "-102.482942"
   },
   {
     "id": 5,
     "name": "Big Bend National Park",
     "state": "Texas",
-    "yearEstablished": 1944
+    "yearEstablished": 1944,
+    "latitude": "29.29817767",
+    "longitude": "-103.2297897"
   },
   {
     "id": 6,
     "name": "Biscayne National Park",
     "state": "Florida",
-    "yearEstablished": 1980
+    "yearEstablished": 1980,
+    "latitude": "25.490587",
+    "longitude": "-80.21023851"
   },
   {
     "id": 7,
     "name": "Black Canyon of the Gunnison National Park",
     "state": "Colorado",
-    "yearEstablished": 1999
+    "yearEstablished": 1999,
+    "latitude": "38.57779869",
+    "longitude": "-107.7242756"
   },
   {
     "id": 8,
     "name": "Bryce Canyon National Park",
     "state": "Utah",
-    "yearEstablished": 1928
+    "yearEstablished": 1928,
+    "latitude": "37.58399144",
+    "longitude": "-112.1826689"
   },
   {
     "id": 9,
     "name": "Canyonlands National Park",
     "state": "Utah",
-    "yearEstablished": 1964
+    "yearEstablished": 1964,
+    "latitude": "38.24555783",
+    "longitude": "-109.8801624"
   },
   {
     "id": 10,
     "name": "Capitol Reef National Park",
     "state": "Utah",
-    "yearEstablished": 1971
+    "yearEstablished": 1971,
+    "latitude": "38.2821653131",
+    "longitude": "-111.247048378"
   },
   {
     "id": 11,
     "name": "Carlsbad Caverns National Park",
     "state": "New Mexico",
-    "yearEstablished": 1930
+    "yearEstablished": 1930,
+    "latitude": "32.14089463",
+    "longitude": "-104.5529688"
   },
   {
     "id": 12,
     "name": "Channel Islands National Park",
     "state": "California",
-    "yearEstablished": 1980
+    "yearEstablished": 1980,
+    "latitude": "33.98680093",
+    "longitude": "-119.9112735"
   },
   {
     "id": 13,
     "name": "Congaree National Park",
     "state": "South Carolina",
-    "yearEstablished": 2003
+    "yearEstablished": 2003,
+    "latitude": "33.79187523",
+    "longitude": "-80.74867805"
   },
   {
     "id": 14,
     "name": "Crater Lake National Park",
     "state": "Oregon",
-    "yearEstablished": 1902
+    "yearEstablished": 1902,
+    "latitude": "42.94065854",
+    "longitude": "-122.1338414"
   },
   {
     "id": 15,
     "name": "Cuyahoga Valley National Park",
     "state": "Ohio",
-    "yearEstablished": 2000
+    "yearEstablished": 2000,
+    "latitude": "41.26093905",
+    "longitude": "-81.57116722"
   },
   {
     "id": 16,
     "name": "Death Valley National Park",
     "state": "California, Nevada",
-    "yearEstablished": 1994
+    "yearEstablished": 1994,
+    "latitude": "36.48753731",
+    "longitude": "-117.134395"
   },
   {
     "id": 17,
     "name": "Denali National Park & Preserve",
     "state": "Alaska",
-    "yearEstablished": 1917
+    "yearEstablished": 1917,
+    "latitude": "63.29777484",
+    "longitude": "-151.0526568"
   },
   {
     "id": 18,
     "name": "Dry Tortugas National Park",
     "state": "Florida",
-    "yearEstablished": 1992
+    "yearEstablished": 1992,
+    "latitude": "24.628741",
+    "longitude": "-82.87319"
   },
   {
     "id": 19,
     "name": "Everglades National Park",
     "state": "Florida",
-    "yearEstablished": 1947
+    "yearEstablished": 1947,
+    "latitude": "25.37294225",
+    "longitude": "-80.88200301"
   },
   {
     "id": 20,
     "name": "Gates of the Arctic National Park & Preserve",
     "state": "Alaska",
-    "yearEstablished": 1980
+    "yearEstablished": 1980,
+    "latitude": "67.75961636",
+    "longitude": "-153.2917758"
   },
   {
     "id": 21,
     "name": "Gateway Arch National Park",
     "state": "Missouri",
-    "yearEstablished": 2018
+    "yearEstablished": 2018,
+    "latitude": "38.6258069",
+    "longitude": "-90.1892508"
   },
   {
     "id": 22,
     "name": "Glacier Bay National Park & Preserve",
     "state": "Alaska",
-    "yearEstablished": 1980
+    "yearEstablished": 1980,
+    "latitude": "58.80086718",
+    "longitude": "-136.8407579"
   },
   {
     "id": 23,
     "name": "Glacier National Park",
     "state": "Montana",
-    "yearEstablished": 1910
+    "yearEstablished": 1910,
+    "latitude": "48.68414678",
+    "longitude": "-113.8009306"
   },
   {
     "id": 24,
     "name": "Grand Canyon National Park",
     "state": "Arizona",
-    "yearEstablished": 1919
+    "yearEstablished": 1919,
+    "latitude": "36.0001165336",
+    "longitude": "-112.121516363"
   },
   {
     "id": 25,
     "name": "Grand Teton National Park",
     "state": "Wyoming",
-    "yearEstablished": 1929
+    "yearEstablished": 1929,
+    "latitude": "43.81853565",
+    "longitude": "-110.7054666"
   },
   {
     "id": 26,
     "name": "Great Basin National Park",
     "state": "Nevada",
-    "yearEstablished": 1986
+    "yearEstablished": 1986,
+    "latitude": "38.94617378",
+    "longitude": "-114.2579782"
   },
   {
     "id": 27,
     "name": "Great Sand Dunes National Park & Preserve",
     "state": "Colorado",
-    "yearEstablished": 2004
+    "yearEstablished": 2004,
+    "latitude": "37.79256812",
+    "longitude": "-105.5919572"
   },
   {
     "id": 28,
     "name": "Great Smoky Mountains National Park",
     "state": "Tennessee, North Carolina",
-    "yearEstablished": 1934
+    "yearEstablished": 1934,
+    "latitude": "35.60116374",
+    "longitude": "-83.50818326"
   },
   {
     "id": 29,
     "name": "Guadalupe Mountains National Park",
     "state": "Texas",
-    "yearEstablished": 1972
+    "yearEstablished": 1972,
+    "latitude": "31.92304462",
+    "longitude": "-104.885527"
   },
   {
     "id": 30,
-    "name": "Haleakal? National Park",
+    "name": "Haleakal\u0101 National Park",
     "state": "Hawaii",
-    "yearEstablished": 1961
+    "yearEstablished": 1961,
+    "latitude": "20.70693015",
+    "longitude": "-156.1591775"
   },
   {
     "id": 31,
-    "name": "Hawai?i Volcanoes National Park",
+    "name": "Hawai\u02bbi Volcanoes National Park",
     "state": "Hawaii",
-    "yearEstablished": 1916
+    "yearEstablished": 1916,
+    "latitude": "19.3355036",
+    "longitude": "-155.4700257"
   },
   {
     "id": 32,
     "name": "Hot Springs National Park",
     "state": "Arkansas",
-    "yearEstablished": 1921
+    "yearEstablished": 1921,
+    "latitude": "34.52414366",
+    "longitude": "-93.06332936"
   },
   {
     "id": 33,
     "name": "Indiana Dunes National Park",
     "state": "Indiana",
-    "yearEstablished": 2019
+    "yearEstablished": 2019,
+    "latitude": "41.63765525",
+    "longitude": "-87.09647445"
   },
   {
     "id": 34,
     "name": "Isle Royale National Park",
     "state": "Michigan",
-    "yearEstablished": 1940
+    "yearEstablished": 1940,
+    "latitude": "48.01145819",
+    "longitude": "-88.82780657"
   },
   {
     "id": 35,
     "name": "Joshua Tree National Park",
     "state": "California",
-    "yearEstablished": 1994
+    "yearEstablished": 1994,
+    "latitude": "33.91418525",
+    "longitude": "-115.8398125"
   },
   {
     "id": 36,
     "name": "Katmai National Park & Preserve",
     "state": "Alaska",
-    "yearEstablished": 1980
+    "yearEstablished": 1980,
+    "latitude": "58.62235668",
+    "longitude": "-155.0126574"
   },
   {
     "id": 37,
     "name": "Kenai Fjords National Park",
     "state": "Alaska",
-    "yearEstablished": 1980
+    "yearEstablished": 1980,
+    "latitude": "59.81804414",
+    "longitude": "-150.106502"
   },
   {
     "id": 38,
     "name": "Kings Canyon National Park",
     "state": "California",
-    "yearEstablished": 1940
+    "yearEstablished": 1940,
+    "latitude": "36.71277299",
+    "longitude": "-118.587429"
   },
   {
     "id": 39,
     "name": "Kobuk Valley National Park",
     "state": "Alaska",
-    "yearEstablished": 1980
+    "yearEstablished": 1980,
+    "latitude": "67.35631336",
+    "longitude": "-159.2002293"
   },
   {
     "id": 40,
     "name": "Lake Clark National Park & Preserve",
     "state": "Alaska",
-    "yearEstablished": 1980
+    "yearEstablished": 1980,
+    "latitude": "60.57405857",
+    "longitude": "-153.55535"
   },
   {
     "id": 41,
     "name": "Lassen Volcanic National Park",
     "state": "California",
-    "yearEstablished": 1916
+    "yearEstablished": 1916,
+    "latitude": "40.49354575",
+    "longitude": "-121.4075993"
   },
   {
     "id": 42,
     "name": "Mammoth Cave National Park",
     "state": "Kentucky",
-    "yearEstablished": 1941
+    "yearEstablished": 1941,
+    "latitude": "37.19760458",
+    "longitude": "-86.13090198"
   },
   {
     "id": 43,
     "name": "Mesa Verde National Park",
     "state": "Colorado",
-    "yearEstablished": 1906
+    "yearEstablished": 1906,
+    "latitude": "37.23908345",
+    "longitude": "-108.4624032"
   },
   {
     "id": 44,
     "name": "Mount Rainier National Park",
     "state": "Washington",
-    "yearEstablished": 1899
+    "yearEstablished": 1899,
+    "latitude": "46.86075416",
+    "longitude": "-121.7043885"
   },
   {
     "id": 45,
     "name": "New River Gorge National Park & Preserve",
     "state": "West Virginia",
-    "yearEstablished": 2020
+    "yearEstablished": 2020,
+    "latitude": "37.86878554",
+    "longitude": "-80.99956002"
   },
   {
     "id": 46,
     "name": "North Cascades National Park",
     "state": "Washington",
-    "yearEstablished": 1968
+    "yearEstablished": 1968,
+    "latitude": "48.71171756",
+    "longitude": "-121.2069423"
   },
   {
     "id": 47,
     "name": "Olympic National Park",
     "state": "Washington",
-    "yearEstablished": 1938
+    "yearEstablished": 1938,
+    "latitude": "47.80392754",
+    "longitude": "-123.6663848"
   },
   {
     "id": 48,
     "name": "Petrified Forest National Park",
     "state": "Arizona",
-    "yearEstablished": 1962
+    "yearEstablished": 1962,
+    "latitude": "34.98387664",
+    "longitude": "-109.7877678"
   },
   {
     "id": 49,
     "name": "Pinnacles National Park",
     "state": "California",
-    "yearEstablished": 2013
+    "yearEstablished": 2013,
+    "latitude": "36.49029208",
+    "longitude": "-121.1813607"
   },
   {
     "id": 50,
     "name": "Redwood National Park",
     "state": "California",
-    "yearEstablished": 1968
+    "yearEstablished": 1968,
+    "latitude": "41.213181",
+    "longitude": "-124.004631"
   },
   {
     "id": 51,
     "name": "Rocky Mountain National Park",
     "state": "Colorado",
-    "yearEstablished": 1915
+    "yearEstablished": 1915,
+    "latitude": "40.3556924",
+    "longitude": "-105.6972879"
   },
   {
     "id": 52,
     "name": "Saguaro National Park",
     "state": "Arizona",
-    "yearEstablished": 1994
+    "yearEstablished": 1994,
+    "latitude": "32.20909636",
+    "longitude": "-110.7574974"
   },
   {
     "id": 53,
     "name": "Sequoia National Park",
     "state": "California",
-    "yearEstablished": 1890
+    "yearEstablished": 1890,
+    "latitude": "36.71277299",
+    "longitude": "-118.587429"
   },
   {
     "id": 54,
     "name": "Shenandoah National Park",
     "state": "Virginia",
-    "yearEstablished": 1935
+    "yearEstablished": 1935,
+    "latitude": "38.49236644",
+    "longitude": "-78.46907715"
   },
   {
     "id": 55,
     "name": "Theodore Roosevelt National Park",
     "state": "North Dakota",
-    "yearEstablished": 1978
+    "yearEstablished": 1978,
+    "latitude": "47.17777274",
+    "longitude": "-103.4300083"
   },
   {
     "id": 56,
     "name": "Virgin Islands National Park",
     "state": "U.S. Virgin Islands",
-    "yearEstablished": 1956
+    "yearEstablished": 1956,
+    "latitude": "18.34279656",
+    "longitude": "-64.74194451"
   },
   {
     "id": 57,
     "name": "Voyageurs National Park",
     "state": "Minnesota",
-    "yearEstablished": 1975
+    "yearEstablished": 1975,
+    "latitude": "48.48370609",
+    "longitude": "-92.8382913"
   },
   {
     "id": 58,
     "name": "White Sands National Park",
     "state": "New Mexico",
-    "yearEstablished": 2019
+    "yearEstablished": 2019,
+    "latitude": "32.77907858",
+    "longitude": "-106.3333461"
   },
   {
     "id": 59,
     "name": "Wind Cave National Park",
     "state": "South Dakota",
-    "yearEstablished": 1903
+    "yearEstablished": 1903,
+    "latitude": "43.58012365",
+    "longitude": "-103.4394709"
   },
   {
     "id": 60,
-    "name": "Wrangell�St. Elias National Park & Preserve",
+    "name": "Wrangell\u2013St. Elias National Park & Preserve",
     "state": "Alaska",
-    "yearEstablished": 1980
+    "yearEstablished": 1980,
+    "latitude": "61.4182147",
+    "longitude": "-142.6028439"
   },
   {
     "id": 61,
     "name": "Yellowstone National Park",
     "state": "Wyoming, Montana, Idaho",
-    "yearEstablished": 1872
+    "yearEstablished": 1872,
+    "latitude": "44.59824417",
+    "longitude": "-110.5471695"
   },
   {
     "id": 62,
     "name": "Yosemite National Park",
     "state": "California",
-    "yearEstablished": 1890
+    "yearEstablished": 1890,
+    "latitude": "37.84883288",
+    "longitude": "-119.5571873"
   },
   {
     "id": 63,
     "name": "Zion National Park",
     "state": "Utah",
-    "yearEstablished": 1919
+    "yearEstablished": 1919,
+    "latitude": "37.29839254",
+    "longitude": "-113.0265138"
   }
 ]
