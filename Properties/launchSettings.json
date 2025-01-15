@@ -6,7 +6,8 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:51134;http://localhost:51135"
+      "applicationUrl": "https://localhost:7113;http://localhost:51135",
+      "sslPort": 7113
     }
   }
 }

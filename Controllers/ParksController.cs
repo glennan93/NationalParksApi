@@ -1,20 +1,25 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NationalParksApi.Models;
 using NationalParksApi.Repositories;
 
 namespace NationalParksApi.Controllers
 {
+    [Authorize]
     [ApiController]
-    [Route("parks")]
+    [Route("api/[controller]")]
     public class ParksController: ControllerBase
     {
         private readonly IParkRepository _repo;
+        private readonly IWeatherService _weatherService;
 
-        public ParksController(IParkRepository repo)
+        public ParksController(IParkRepository repo, IWeatherService weatherService)
         {
             _repo = repo;
+            _weatherService = weatherService;
         }
 
+        [Authorize(Roles = "Admin,User")]
         [HttpGet]
         public IActionResult GetParks([FromQuery] string? name, [FromQuery] int? year, [FromQuery] string? state, [FromQuery] int? id)
         {
@@ -41,6 +46,8 @@ namespace NationalParksApi.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
+
         public IActionResult CreatePark([FromBody] NationalPark newPark)
         {
             var created = _repo.Add(newPark);
@@ -48,6 +55,8 @@ namespace NationalParksApi.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
+
         public IActionResult UpdatePark(int id, [FromBody] NationalPark updatedPark)
         {
             var park = _repo.Update(id, updatedPark);
@@ -57,12 +66,36 @@ namespace NationalParksApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
+
         public IActionResult DeletePark(int id)
         {
             var success = _repo.Delete(id);
             if (!success)
                 return NotFound("Park not found.");
             return Ok($"Park with ID {id} deleted.");
+        }
+
+        [HttpGet("{id}/currentweather")]
+        [Authorize(Roles = "Admin,User")]
+        public async Task<IActionResult> GetParkWeather(int id)
+        {
+            var park = _repo.GetById(id);
+            var name = park.Name;
+            if (park == null)
+                return NotFound("Park not found.");
+
+            var weatherData = await _weatherService.GetCurrentWeatherAsync(park.Latitude, park.Longitude);
+            if (weatherData == null)
+                return StatusCode(StatusCodes.Status500InternalServerError, "Unable to retrieve weather data.");
+
+            var parkWeatherInfo = new ParkWeatherInfo
+            {
+                ParkName = name,
+                WeatherData = weatherData
+            };
+
+            return Ok(parkWeatherInfo);
         }
     }
 }
