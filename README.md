@@ -154,7 +154,6 @@ Follow these instructions to set up and run the **NationalParksApi** project loc
 http://localhost:7113/
 
 
-
 ### Endpoints
 
 #### 1. Get All Parks
@@ -163,6 +162,23 @@ http://localhost:7113/
 - **Method:** `GET`
 - **Roles:** `Admin`, `User`
 - **Description:** Retrieves a list of all parks. Supports optional query parameters for filtering.
+- **Example Request (Admin/User):**
+    ```bash
+    GET https://localhost:7113/api/Parks
+    Authorization: Bearer <Your JWT Token>
+    ```
+- **Example Response:**
+    ```json
+    [
+        {
+            "id": 1,
+            "name": "Acadia National Park",
+            "state": "Maine",
+            "yearEstablished": 1919
+        },
+        ...
+    ]
+    ```
 
 #### 2. Create a New Park
 
@@ -170,27 +186,104 @@ http://localhost:7113/
 - **Method:** `POST`
 - **Roles:** `Admin`
 - **Description:** Adds a new park to the database.
+- **Example Request (Admin):**
+    ```bash
+    POST https://localhost:7113/api/Parks
+    Authorization: Bearer <Your JWT Token>
+    Content-Type: application/json
+    ```
+    Request Body:
+    ```json
+    {
+        "name": "New Park",
+        "state": "Sample State",
+        "yearEstablished": 2025,
+        "latitude": 45.0,
+        "longitude": -90.0
+    }
+    ```
+- **Example Response:**
+    ```json
+    {
+        "id": 64,
+        "name": "New Park",
+        "state": "Sample State",
+        "yearEstablished": 2025,
+        "latitude": 45.0,
+        "longitude": -90.0
+    }
+    ```
 
 #### 3. Update an Existing Park
 
 - **URL:** `/api/Parks/{id}`
 - **Method:** `PUT`
 - **Roles:** `Admin`
-- **Description:** Updates a park's details.
+- **Description:** Updates the details of an existing park.
+- **Example Request (Admin):**
+    ```bash
+    PUT https://localhost:7113/api/Parks/64
+    Authorization: Bearer <Your JWT Token>
+    Content-Type: application/json
+    ```
+    Request Body:
+    ```json
+    {
+        "name": "Updated Park",
+        "state": "Updated State",
+        "yearEstablished": 2026,
+        "latitude": 46.0,
+        "longitude": -91.0
+    }
+    ```
+- **Example Response:**
+    ```json
+    {
+        "id": 64,
+        "name": "Updated Park",
+        "state": "Updated State",
+        "yearEstablished": 2026,
+        "latitude": 46.0,
+        "longitude": -91.0
+    }
+    ```
 
 #### 4. Delete a Park
 
 - **URL:** `/api/Parks/{id}`
 - **Method:** `DELETE`
 - **Roles:** `Admin`
-- **Description:** Deletes a park.
+- **Description:** Removes a park from the database.
+- **Example Request (Admin):**
+    ```bash
+    DELETE https://localhost:7113/api/Parks/64
+    Authorization: Bearer <Your JWT Token>
+    ```
+
+- **Example Response:**
+    ```json
+    "Park with ID 64 deleted."
+    ```
 
 #### 5. Get Current Weather for a Park
 
-- **URL:** `/api/Parks/{id}/currentweather`
+- **URL:** `/api/Parks/{id}/weather`
 - **Method:** `GET`
 - **Roles:** `Admin`, `User`
-- **Description:** Fetches the current weather for the specified park using its latitude and longitude.
+- **Description:** Fetches the current weather for the specified park.
+- **Example Request (Admin/User):**
+    ```bash
+    GET https://localhost:7113/api/Parks/1/weather
+    Authorization: Bearer <Your JWT Token>
+    ```
+- **Example Response:**
+    ```json
+    {
+        "latitude": 52.52,
+        "longitude": 13.419998,
+        "temperature": -2.7
+    }
+    ```
 
 ---
 
