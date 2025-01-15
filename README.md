@@ -1,6 +1,5 @@
 # NationalParksApi
 
-
 ## Table of Contents
 
 - [Overview](#overview)
@@ -9,6 +8,7 @@
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
+- [Authentication and Authorization](#authentication-and-authorization)
 - [API Usage](#api-usage)
   - [Base URL](#base-url)
   - [Endpoints](#endpoints)
@@ -16,27 +16,43 @@
     - [2. Create a New Park](#2-create-a-new-park)
     - [3. Update an Existing Park](#3-update-an-existing-park)
     - [4. Delete a Park](#4-delete-a-park)
+    - [5. Get Current Weather for a Park](#5-get-current-weather-for-a-park)
 - [License](#license)
 - [Contact](#contact)
 
+---
+
 ## Overview
 
-**NationalParksApi** is a RESTful Web API designed to manage and provide information about various national parks. Built with **ASP.NET Core**, **Entity Framework Core**, and **SQLite**, this API allows users to perform CRUD (Create, Read, Update, Delete) operations on national park data. The project includes data seeding from a JSON file to ensure the database is populated with initial data upon setup.
+**NationalParksApi** is a RESTful Web API designed to manage and provide information about various national parks. Built with **ASP.NET Core**, **Entity Framework Core**, and **SQLite**, this API allows users to perform CRUD (Create, Read, Update, Delete) operations on national park data. It also provides real-time weather information for specific parks and includes robust authentication and authorization using JWT and ASP.NET Core Identity.
+
+---
 
 ## Features
 
 - **CRUD Operations:** Create, retrieve, update, and delete national park records.
 - **Data Seeding:** Automatically seeds the database with predefined park data from a JSON file.
 - **Search and Filtering:** Query parks by name, state, year established, or ID.
+- **Real-Time Weather:** Fetches the current weather for a specified park using Open-Meteo API.
+- **Authentication and Authorization:**
+  - User registration and login with JWT-based authentication.
+  - Role-based authorization with two roles: `Admin` and `User`.
+  - Admins can access all endpoints, while Users have limited access.
 - **Database Integration:** Utilizes SQLite for lightweight data storage, managed through Entity Framework Core.
 - **Repository Pattern:** Implements a repository pattern for clean separation of concerns and easier maintenance.
+
+---
 
 ## Technologies Used
 
 - [ASP.NET Core](https://dotnet.microsoft.com/apps/aspnet)
 - [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/)
 - [SQLite](https://www.sqlite.org/index.html)
+- [Open-Meteo API](https://open-meteo.com/) for weather data
+- [JWT](https://jwt.io/) for authentication
 - [GitHub](https://github.com/) for version control
+
+---
 
 ## Getting Started
 
@@ -46,6 +62,7 @@ Follow these instructions to set up and run the **NationalParksApi** project loc
 
 - [.NET 6 SDK or later](https://dotnet.microsoft.com/download)
 - [Git](https://git-scm.com/downloads)
+- [Postman](https://www.postman.com/) or another API client (optional for testing)
 
 ### Installation
 
@@ -61,172 +78,124 @@ Follow these instructions to set up and run the **NationalParksApi** project loc
     cd NationalParksApi
     ```
 
-3. **Restore Dependencies:**
+3. **Set Environment Variables:**
+
+    Create a `.env` file in the project root with the following keys:
+    ```
+    ADMIN_EMAIL=admin@example.com
+    ADMIN_PASSWORD=SecureAdminPassword123!
+    JWT_KEY=YourSuperSecretKey
+    WEATHER_API_BASE_URL=https://api.open-meteo.com/v1/
+    ```
+
+4. **Restore Dependencies:**
 
     ```bash
     dotnet restore
     ```
 
-4. **Apply Migrations and Seed the Database:**
+5. **Apply Migrations and Seed the Database:**
 
     ```bash
-    dotnet ef database update
+    dotnet ef database update -c ParkContext
+    dotnet ef database update -c ApplicationDbContext
     ```
 
-5. **Run the Application:**
+6. **Run the Application:**
 
     ```bash
     dotnet run
     ```
 
-6. **Access the API:**
+7. **Access the API:**
 
-    The API will be running at `http://localhost:51135` by default. You can use tools like [Postman](https://www.postman.com/) or [curl](https://curl.se/) to interact with the endpoints.
+    The API will be running at `https://localhost:7113` by default.
+
+---
+
+## Authentication and Authorization
+
+- **Roles:**
+  - `Admin`: Full access to all endpoints.
+  - `User`: Can only access the "Get All Parks" and "Get Current Weather for a Park" endpoints.
+  
+- **Endpoints for Authentication:**
+  - **Register:**
+    ```bash
+    POST https://localhost:7113/api/Auth/Register
+    ```
+    Request body:
+    ```json
+    {
+      "email": "user@example.com",
+      "password": "SecurePassword123!"
+    }
+    ```
+  - **Login:**
+    ```bash
+    POST https://localhost:7113/api/Auth/Login
+    ```
+    Request body:
+    ```json
+    {
+      "email": "user@example.com",
+      "password": "SecurePassword123!"
+    }
+    ```
+    The response includes a JWT token to use in subsequent requests.
+
+---
 
 ## API Usage
 
-The **NationalParksApi** provides the following endpoints to manage national park data.
-
 ### Base URL
 
-http://localhost:51135/
+
+http://localhost:7113/
+
 
 
 ### Endpoints
 
 #### 1. Get All Parks
 
-- **URL:** `/parks`
+- **URL:** `/api/Parks`
 - **Method:** `GET`
-- **Description:** Retrieves a list of all national parks. Supports optional query parameters for filtering.
-- **Query Parameters:**
-  - `name` (string): Filter parks by name.
-  - `state` (string): Filter parks by state.
-  - `year` (integer): Filter parks by the year they were established.
-  - `id` (integer): Retrieve a specific park by its ID.
-
-- **Example Request:**
-
-    ```bash
-    GET http://localhost:51135/parks
-    ```
-
-- **Example Response:**
-
-    ```json
-    [
-        {
-            "id": 1,
-            "name": "Acadia National Park",
-            "state": "Maine",
-            "yearEstablished": 1919
-        },
-        {
-            "id": 2,
-            "name": "American Samoa National Park",
-            "state": "American Samoa",
-            "yearEstablished": 1988
-        }
-        // ... more parks
-    ]
-    ```
+- **Roles:** `Admin`, `User`
+- **Description:** Retrieves a list of all parks. Supports optional query parameters for filtering.
 
 #### 2. Create a New Park
 
-- **URL:** `/parks`
+- **URL:** `/api/Parks`
 - **Method:** `POST`
-- **Description:** Adds a new national park to the database.
-- **Request Body:**
-
-    ```json
-    {
-        "name": "Yellowstone National Park",
-        "state": "Wyoming",
-        "yearEstablished": 1872
-    }
-    ```
-
-- **Example Request:**
-
-    ```bash
-    POST http://localhost:51135/parks
-    Content-Type: application/json
-
-    {
-        "name": "Yellowstone National Park",
-        "state": "Wyoming",
-        "yearEstablished": 1872
-    }
-    ```
-
-- **Example Response:**
-
-    ```json
-    {
-        "id": 64,
-        "name": "Yellowstone National Park",
-        "state": "Wyoming",
-        "yearEstablished": 1872
-    }
-    ```
+- **Roles:** `Admin`
+- **Description:** Adds a new park to the database.
 
 #### 3. Update an Existing Park
 
-- **URL:** `/parks/{id}`
+- **URL:** `/api/Parks/{id}`
 - **Method:** `PUT`
-- **Description:** Updates the details of an existing national park.
-- **Path Parameters:**
-  - `id` (integer): The ID of the park to update.
-- **Request Body:**
-
-    ```json
-    {
-        "name": "Yellowstone National Park",
-        "state": "Wyoming, Montana, Idaho",
-        "yearEstablished": 1872
-    }
-    ```
-
-- **Example Request:**
-
-    ```bash
-    PUT http://localhost:51135/parks/64
-    Content-Type: application/json
-
-    {
-        "name": "Yellowstone National Park",
-        "state": "Wyoming, Montana, Idaho",
-        "yearEstablished": 1872
-    }
-    ```
-
-- **Example Response:**
-
-    ```json
-    {
-        "id": 64,
-        "name": "Yellowstone National Park",
-        "state": "Wyoming, Montana, Idaho",
-        "yearEstablished": 1872
-    }
-    ```
+- **Roles:** `Admin`
+- **Description:** Updates a park's details.
 
 #### 4. Delete a Park
 
-- **URL:** `/parks/{id}`
+- **URL:** `/api/Parks/{id}`
 - **Method:** `DELETE`
-- **Description:** Removes a national park from the database.
-- **Path Parameters:**
-  - `id` (integer): The ID of the park to delete.
+- **Roles:** `Admin`
+- **Description:** Deletes a park.
 
-- **Example Request:**
+#### 5. Get Current Weather for a Park
 
-    ```bash
-    DELETE http://localhost:51135/parks/64
-    ```
+- **URL:** `/api/Parks/{id}/currentweather`
+- **Method:** `GET`
+- **Roles:** `Admin`, `User`
+- **Description:** Fetches the current weather for the specified park using its latitude and longitude.
 
-- **Example Response:**
+---
 
-    ```json
-    "Park with ID 64 deleted."
-    ```
+## License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+
+---
