@@ -1,11 +1,14 @@
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Threading.Tasks;
+using DotNetEnv;
 
 public static class RoleSeeder
 {
     public static async Task SeedRolesAndAdminAsync(IServiceProvider serviceProvider)
     {
+
+        Env.Load();
         var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
         var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 

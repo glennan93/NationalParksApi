@@ -40,6 +40,8 @@ namespace NationalParksApi.Repositories
             existing.Name = updatedPark.Name;
             existing.State = updatedPark.State;
             existing.YearEstablished = updatedPark.YearEstablished;
+            existing.Latitude = updatedPark.Latitude;
+            existing.Longitude = updatedPark.Longitude;
             _context.SaveChanges();
             return existing;
         }
