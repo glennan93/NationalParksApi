@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Globalization;
 
 public interface IWeatherService
 {
@@ -18,9 +19,25 @@ public class WeatherService : IWeatherService
 
     public async Task<WeatherApiResponseDto?> GetCurrentWeatherAsync(string latitude, string longitude)
     {
+        if (!double.TryParse(latitude, System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture, out double lat))
+        {
+            throw new ArgumentException("Invalid latitude value");
+        }
+
+        if (!double.TryParse(longitude, System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture, out double lon))
+        {
+            throw new ArgumentException("Invalid longitude value");
+        }
+
+        var safeLatitude = lat.ToString(CultureInfo.InvariantCulture);
+        var safeLongitude = lon.ToString(CultureInfo.InvariantCulture); 
+
+        safeLatitude = Uri.EscapeDataString(safeLatitude);
+        safeLongitude = Uri.EscapeDataString(safeLongitude);
+
         var baseUrl = _configuration["Weather:BaseUrl"];
 
-        var url = $"{baseUrl}forecast?latitude={latitude}&longitude={longitude}&current=temperature_2m&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=auto&forecast_days=1";
+        var url = $"{baseUrl}forecast?latitude={safeLatitude}&longitude={safeLongitude}&current=temperature_2m&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=auto&forecast_days=1";
 
         var response = await _httpClient.GetAsync(url);
         if (!response.IsSuccessStatusCode)

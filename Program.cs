@@ -14,6 +14,19 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using NationalParksApi.Middleware;
+using Serilog;
+using Serilog.Events;
+
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Debug() // Set the minimum log level
+    .MinimumLevel.Override("Microsoft", LogEventLevel.Warning) // Override for framework logs
+    .Enrich.FromLogContext() 
+    .WriteTo.Console() // Write logs to the console
+    .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day) // Write logs to a file with daily rolling
+    .CreateLogger();
+
+Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,7 +45,6 @@ builder.Services.AddAuthentication(options =>
 })
 .AddJwtBearer(options =>
 {
-    Env.Load();
     var jwtKey = Environment.GetEnvironmentVariable("JWT_KEY");
     if (string.IsNullOrEmpty(jwtKey))
     {
@@ -66,7 +78,12 @@ builder.Services.AddControllers();
 
 builder.Services.AddHttpClient<IWeatherService, WeatherService>();
 
+// Add logging
+builder.Host.UseSerilog();
+
 var app = builder.Build();
+
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 //ensure https
 app.UseHttpsRedirection();
@@ -84,7 +101,7 @@ using (var scope = app.Services.CreateScope())
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"Error seeding roles: {ex.Message}");
+        Log.Error($"Error seeding roles: {ex.Message}");
     }
 }
 
@@ -105,7 +122,7 @@ using (var scope = app.Services.CreateScope())
             }
 
             var json = File.ReadAllText(jsonPath);
-            Console.WriteLine(json);
+            Log.Information("Seeding database from JSON:\n{Json}", json);
 
             // seeding seems to only work with the case insensitive set to true
             var parks = JsonSerializer.Deserialize<List<NationalPark>>(json, new JsonSerializerOptions
@@ -115,25 +132,24 @@ using (var scope = app.Services.CreateScope())
 
             if (parks == null)
             {
-                Console.WriteLine("Deserialization returned null");
+                Log.Warning("Deserialization returned null");
             }
 
             if (parks != null && parks.Count > 0)
             {
                 context.Parks.AddRange(parks);
                 var recordsAdded = context.SaveChanges();
-                Console.WriteLine($"{recordsAdded} parks added to the database");
+               Log.Information($"{recordsAdded} parks added to the database");
             }
         }
         else
         {
-            Console.WriteLine("Database already has parks.");
-            Console.WriteLine($"Park count: {context.Parks.Count()}");
+            Log.Information("Database already has parks. Park count: {Count}", context.Parks.Count());
         }
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"Exception occurred during seeding: {ex.Message}");
+       Log.Error($"Exception occurred during seeding: {ex.Message}");
     }
 }
 
