@@ -14,5 +14,6 @@
 
         public string Latitude {  get; set; }
         public string Longitude { get; set; }
+        public string CreatedBy { get; set; } = string.Empty;
     }
 }
