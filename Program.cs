@@ -17,6 +17,7 @@ using System.Text;
 using NationalParksApi.Middleware;
 using Serilog;
 using Serilog.Events;
+using Microsoft.AspNetCore.Authorization;
 
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Debug() // Set the minimum log level
@@ -37,6 +38,14 @@ builder.Services.AddDbContext<ParkContext>(options =>
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("IdentityConnection")));
+
+builder.Services.AddSingleton<IAuthorizationHandler, SameOwnerHandler>();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("OwnerOrAdmin", policy =>
+        policy.Requirements.Add(new OwnerOrAdminRequirement()));
+});
 
 builder.Services.AddAuthentication(options =>
 {
@@ -114,7 +123,7 @@ using (var scope = app.Services.CreateScope())
 
         if (!context.Parks.Any())
         {
-            var jsonPath = Path.Combine(AppContext.BaseDirectory, "Data", "parks.json");
+            var jsonPath = Path.Combine(AppContext.BaseDirectory, "Data", "parkscreatedby.json");
 
             if (!File.Exists(jsonPath))
             {
