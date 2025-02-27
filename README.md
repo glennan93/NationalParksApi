@@ -201,7 +201,7 @@ http://localhost:7113/
                 "latitude": 32.147,
                 "longitude": -104.556
             },
-            // ... 9 more parks for this page
+             ... 9 more parks for this page
         ],
         "pageNumber": 2,
         "pageSize": 10,
@@ -267,7 +267,7 @@ http://localhost:7113/
         "yearEstablished": 1850,
         "latitude": 51.0,
         "longitude": 51.0,
-        "createdBy": "user@example.com" // Usually this field is managed by the system.
+        "createdBy": "user@example.com"
     }
     ```
 - **Example Response:**
