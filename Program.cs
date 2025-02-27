@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,11 +20,11 @@ using Serilog.Events;
 using Microsoft.AspNetCore.Authorization;
 
 Log.Logger = new LoggerConfiguration()
-    .MinimumLevel.Debug() // Set the minimum log level
-    .MinimumLevel.Override("Microsoft", LogEventLevel.Warning) // Override for framework logs
+    .MinimumLevel.Debug()
+    .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
     .Enrich.FromLogContext() 
-    .WriteTo.Console() // Write logs to the console
-    .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day) // Write logs to a file with daily rolling
+    .WriteTo.Console()
+    .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger();
 
 Env.Load();
