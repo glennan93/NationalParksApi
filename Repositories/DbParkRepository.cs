@@ -3,6 +3,8 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using NationalParksApi.Models;
 using NationalParksApi.Data;
+using Sprache;
+using NationalParksApi.DTOs;
 
 namespace NationalParksApi.Repositories
 {
@@ -17,7 +19,20 @@ namespace NationalParksApi.Repositories
 
         public IEnumerable<NationalPark> GetAll()
         {
-            return _context.Parks.ToList();
+            return _context.Parks;
+        }
+
+        public PagedResponse<NationalPark> GetPagedParks(int pageNumber, int pageSize)
+        {
+            var totalRecords = _context.Parks.Count();
+
+            var data = _context.Parks
+                .OrderBy(p => p.Id)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return new PagedResponse<NationalPark>(data, pageNumber, pageSize, totalRecords);
         }
 
         public NationalPark? GetById(int id)

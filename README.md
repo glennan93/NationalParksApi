@@ -9,6 +9,7 @@
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Authentication and Authorization](#authentication-and-authorization)
+- [Pagination](#pagination)
 - [API Usage](#api-usage)
   - [Base URL](#base-url)
   - [Endpoints](#endpoints)
@@ -38,6 +39,7 @@
   - User registration and login with JWT-based authentication.
   - Role-based authorization with two roles: `Admin` and `User`.
   - Admins can access all endpoints, while Users have limited access.
+- **Pagination:** Retrieve parks in a paged manner, including metadata like total records and total pages.
 - **Database Integration:** Utilizes SQLite for lightweight data storage, managed through Entity Framework Core.
 - **Repository Pattern:** Implements a repository pattern for clean separation of concerns and easier maintenance.
 
@@ -50,6 +52,7 @@
 - [SQLite](https://www.sqlite.org/index.html)
 - [Open-Meteo API](https://open-meteo.com/) for weather data
 - [JWT](https://jwt.io/) for authentication
+- [Serilog](https://serilog.net/) for logging
 - [GitHub](https://github.com/) for version control
 
 ---
@@ -116,9 +119,11 @@ Follow these instructions to set up and run the **NationalParksApi** project loc
 ## Authentication and Authorization
 
 - **Roles:**
-  - `Admin`: Full access to all endpoints.
-  - `User`: Can only access the "Get All Parks" and "Get Current Weather for a Park" endpoints.
-  
+  - `Admin`: Has full access to all endpoints.
+  - `User`: Can only view parks and current weather, and can update/delete parks they created.
+- **Policy-Based Authorization:**  
+  A custom policy ensures that only the creator of a park (or an Admin) can update or delete it.
+
 - **Endpoints for Authentication:**
   - **Register:**
     ```bash
@@ -146,6 +151,17 @@ Follow these instructions to set up and run the **NationalParksApi** project loc
 
 ---
 
+## Pagination
+
+When retrieving parks, you can control which page of results is returned. Use the following query parameters:
+
+- **pageNumber:** The page to retrieve (default is 1).
+- **pageSize:** The number of items per page (default is 10).
+
+The API will also return metadata including the total number of records and total pages.
+
+---
+
 ## API Usage
 
 ### Base URL
@@ -156,37 +172,52 @@ http://localhost:7113/
 
 ### Endpoints
 
-#### 1. Get All Parks
+#### 1. Get All Parks (with Pagination)
 
 - **URL:** `/api/Parks`
 - **Method:** `GET`
 - **Roles:** `Admin`, `User`
-- **Description:** Retrieves a list of all parks. Supports optional query parameters for filtering.
-- **Example Request (Admin/User):**
+- **Query Parameters (optional):**
+  - `name`: Filter parks by name.
+  - `year`: Filter parks by the year established.
+  - `state`: Filter parks by state.
+  - `id`: Retrieve a specific park by its ID.
+  - `pageNumber`: The page number to retrieve.
+  - `pageSize`: The number of parks per page.
+- **Example Request:**
     ```bash
-    GET https://localhost:7113/api/Parks
+    GET https://localhost:7113/api/Parks?pageNumber=2&pageSize=10
     Authorization: Bearer <Your JWT Token>
     ```
 - **Example Response:**
     ```json
-    [
-        {
-            "id": 1,
-            "name": "Acadia National Park",
-            "state": "Maine",
-            "yearEstablished": 1919
-        },
-        ...
-    ]
+    {
+        "data": [
+            {
+                "id": 11,
+                "name": "Carlsbad Caverns National Park",
+                "state": "New Mexico",
+                "yearEstablished": 1930,
+                "latitude": 32.147,
+                "longitude": -104.556
+            },
+            // ... 9 more parks for this page
+        ],
+        "pageNumber": 2,
+        "pageSize": 10,
+        "totalRecords": 63,
+        "totalPages": 7
+    }
     ```
 
 #### 2. Create a New Park
 
 - **URL:** `/api/Parks`
 - **Method:** `POST`
-- **Roles:** `Admin`
-- **Description:** Adds a new park to the database.
-- **Example Request (Admin):**
+- **Roles:** `Admin, User`
+- **Description:** Adds a new park to the database.  
+  The park creator's identity is recorded to enforce ownership for future updates or deletions.
+- **Example Request:**
     ```bash
     POST https://localhost:7113/api/Parks
     Authorization: Bearer <Your JWT Token>
@@ -195,32 +226,34 @@ http://localhost:7113/
     Request Body:
     ```json
     {
-        "name": "New Park",
-        "state": "Sample State",
-        "yearEstablished": 2025,
-        "latitude": 45.0,
-        "longitude": -90.0
+        "name": "Enchanted Rock State Natural Area",
+        "state": "Texas",
+        "yearEstablished": 1850,
+        "latitude": 50.0,
+        "longitude": 50.0
     }
     ```
 - **Example Response:**
     ```json
     {
         "id": 64,
-        "name": "New Park",
-        "state": "Sample State",
-        "yearEstablished": 2025,
-        "latitude": 45.0,
-        "longitude": -90.0
+        "name": "Enchanted Rock State Natural Area",
+        "state": "Texas",
+        "yearEstablished": 1850,
+        "latitude": 50.0,
+        "longitude": 50.0,
+        "createdBy": "user@example.com"
     }
     ```
+
 
 #### 3. Update an Existing Park
 
 - **URL:** `/api/Parks/{id}`
 - **Method:** `PUT`
-- **Roles:** `Admin`
-- **Description:** Updates the details of an existing park.
-- **Example Request (Admin):**
+- **Roles:** `Admin` or the park creator (as enforced by the custom policy)
+- **Description:** Updates park details. Only the creator of the park or an Admin can update a park.
+- **Example Request:**
     ```bash
     PUT https://localhost:7113/api/Parks/64
     Authorization: Bearer <Your JWT Token>
@@ -229,22 +262,24 @@ http://localhost:7113/
     Request Body:
     ```json
     {
-        "name": "Updated Park",
-        "state": "Updated State",
-        "yearEstablished": 2026,
-        "latitude": 46.0,
-        "longitude": -91.0
+        "name": "Enchanted Rock State Natural Area - Updated",
+        "state": "Texas",
+        "yearEstablished": 1850,
+        "latitude": 51.0,
+        "longitude": 51.0,
+        "createdBy": "user@example.com" // Usually this field is managed by the system.
     }
     ```
 - **Example Response:**
     ```json
     {
         "id": 64,
-        "name": "Updated Park",
-        "state": "Updated State",
-        "yearEstablished": 2026,
-        "latitude": 46.0,
-        "longitude": -91.0
+        "name": "Enchanted Rock State Natural Area - Updated",
+        "state": "Texas",
+        "yearEstablished": 1850,
+        "latitude": 51.0,
+        "longitude": 51.0,
+        "createdBy": "user@example.com"
     }
     ```
 
@@ -252,14 +287,13 @@ http://localhost:7113/
 
 - **URL:** `/api/Parks/{id}`
 - **Method:** `DELETE`
-- **Roles:** `Admin`
-- **Description:** Removes a park from the database.
-- **Example Request (Admin):**
+- **Roles:** `Admin` or the park creator (per policy)
+- **Description:** Deletes the specified park.
+- **Example Request:**
     ```bash
     DELETE https://localhost:7113/api/Parks/64
     Authorization: Bearer <Your JWT Token>
     ```
-
 - **Example Response:**
     ```json
     "Park with ID 64 deleted."
@@ -267,25 +301,26 @@ http://localhost:7113/
 
 #### 5. Get Current Weather for a Park
 
-- **URL:** `/api/Parks/{id}/weather`
+- **URL:** `/api/Parks/{id}/currentweather`
 - **Method:** `GET`
 - **Roles:** `Admin`, `User`
-- **Description:** Fetches the current weather for the specified park.
-- **Example Request (Admin/User):**
+- **Description:** Retrieves the current weather for a park using its latitude and longitude.
+- **Example Request:**
     ```bash
-    GET https://localhost:7113/api/Parks/1/weather
+    GET https://localhost:7113/api/Parks/1/currentweather
     Authorization: Bearer <Your JWT Token>
     ```
 - **Example Response:**
     ```json
     {
-        "latitude": 52.52,
-        "longitude": 13.419998,
-        "temperature": -2.7
+        "parkName": "Acadia National Park",
+        "weatherData": {
+            "latitude": 52.52,
+            "longitude": 13.419998,
+            "temperature": -2.7
+        }
     }
     ```
-
----
 
 ## License
 

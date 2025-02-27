@@ -17,7 +17,8 @@ namespace NationalParksApi.Controllers
         private readonly ILogger<ParksController> _logger;
         private readonly IAuthorizationService _authorizationService;
 
-        public ParksController(IParkRepository repo, IWeatherService weatherService, ILogger<ParksController> logger, IAuthorizationService authorizationService)
+        public ParksController(IParkRepository repo, IWeatherService weatherService, ILogger<ParksController> logger,
+            IAuthorizationService authorizationService)
         {
             _repo = repo;
             _weatherService = weatherService;
@@ -27,9 +28,11 @@ namespace NationalParksApi.Controllers
 
         [Authorize(Roles = "Admin,User")]
         [HttpGet]
-        public IActionResult GetParks([FromQuery] string? name, [FromQuery] int? year, [FromQuery] string? state, [FromQuery] int? id)
+        public IActionResult GetParks([FromQuery] string? name, [FromQuery] int? year, [FromQuery] string? state,
+            [FromQuery] int? id, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
-            _logger.LogInformation("Getting parks with filters: name={Name}, year={Year}, state={State}, id={Id}", name, year, state, id);
+            _logger.LogInformation("Getting parks with filters: name={Name}, year={Year}, state={State}, id={Id}," +
+                " pageNumber={PageNumber}, pageSize={PageSize}", name, year, state, id, pageNumber, pageSize);
             var parks = _repo.GetAll();
 
             if (!string.IsNullOrWhiteSpace(name))
@@ -52,7 +55,9 @@ namespace NationalParksApi.Controllers
                 return Ok(park);
             }
 
-            return Ok(parks);
+            var pagedParks = _repo.GetPagedParks(pageNumber, pageSize);
+
+            return Ok(pagedParks);
         }
 
         [HttpPost]
